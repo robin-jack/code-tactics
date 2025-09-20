@@ -1,0 +1,38 @@
+# Godot editor/import/cache
+.import/
+*.import
+
+# Godot editor settings (user-local)
+.godot/
+# keep project.godot tracked (it is at project root)
+!project.godot
+
+# Mono/C# (if using C#)
+.mono/
+*.csproj
+*.sln
+*.userprefs
+
+# Export/output folders
+export/
+*.pck
+*.exe
+*.apk
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+*.tmp
+
+# Optional: build artifacts you never want
+bin/
+build/
+
+# hole
+map_manager.gd
+.env

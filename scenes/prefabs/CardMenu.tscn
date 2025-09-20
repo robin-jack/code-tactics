@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqoowxrcw5v8y"]
+
+[ext_resource type="Script" uid="uid://vspr3qrosgp5" path="res://scenes/prefabs/card_menu.gd" id="1_2n5vj"]
+[ext_resource type="Texture2D" uid="uid://k4pkjyrgl2dk" path="res://assets/sprites/card_remove.png" id="1_twdno"]
+[ext_resource type="Texture2D" uid="uid://cbqf3nwuhqtpp" path="res://assets/sprites/card_edit.png" id="2_2n5vj"]
+
+[node name="CardMenuPopUp" type="PopupPanel"]
+size = Vector2i(200, 83)
+visible = true
+script = ExtResource("1_2n5vj")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+custom_minimum_size = Vector2(192, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 196.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Write here..."
+max_length = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 196.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Replace" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("1_twdno")
+
+[node name="Edit" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_2n5vj")
+
+[connection signal="popup_hide" from="." to="." method="_on_popup_hide"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="button_up" from="HBoxContainer/Replace" to="." method="_on_replace_button_up"]
+[connection signal="button_up" from="HBoxContainer/Edit" to="." method="_on_edit_button_up"]

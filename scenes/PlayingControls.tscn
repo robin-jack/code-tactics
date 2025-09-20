@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm5vn3wyk30cu"]
+
+[ext_resource type="Script" uid="uid://dbqge4btl2hp1" path="res://scenes/playing_controls.gd" id="1_cfdx6"]
+[ext_resource type="PackedScene" uid="uid://c4kle165khycj" path="res://scenes/prefabs/TeamScore.tscn" id="1_rba0a"]
+[ext_resource type="PackedScene" uid="uid://dpcjk8rmlgr0y" path="res://scenes/prefabs/TimeBox.tscn" id="2_gu71c"]
+[ext_resource type="Texture2D" uid="uid://1ygku0xcafk6" path="res://assets/sprites/teamscore_red.png" id="3_lc875"]
+[ext_resource type="Texture2D" uid="uid://dc8ytiqvhsq5y" path="res://assets/sprites/teamscore_blue.png" id="5_gomo4"]
+[ext_resource type="PackedScene" uid="uid://ijj62ln56aam" path="res://scenes/SecretMap.tscn" id="6_anwh6"]
+[ext_resource type="PackedScene" uid="uid://djvyscvwt1u3u" path="res://scenes/prefabs/PopupQR.tscn" id="7_u0ign"]
+
+[node name="PlayingControls" type="Control"]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("1_cfdx6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -246.5
+offset_right = 60.0
+offset_bottom = 246.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="RedScore" parent="VBoxContainer" instance=ExtResource("1_rba0a")]
+layout_mode = 2
+size_flags_vertical = 1
+texture = ExtResource("3_lc875")
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TimeBox" parent="VBoxContainer" instance=ExtResource("2_gu71c")]
+layout_mode = 2
+
+[node name="Hints" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_stretch_ratio = 0.5
+text = "HINTS"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="BlueScore" parent="VBoxContainer" instance=ExtResource("1_rba0a")]
+layout_mode = 2
+size_flags_vertical = 1
+texture = ExtResource("5_gomo4")
+team = 1
+
+[node name="ToSetup" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 20
+text = "<<<"
+
+[node name="ShowQR" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 1
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "QR"
+
+[node name="PopupQR" parent="." instance=ExtResource("7_u0ign")]
+layout_mode = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(720, 720)
+render_target_update_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SecretMap" parent="SubViewport/MarginContainer" node_paths=PackedStringArray("sub_viewport") instance=ExtResource("6_anwh6")]
+layout_mode = 2
+sub_viewport = NodePath("../..")
+
+[connection signal="button_up" from="ToSetup" to="." method="_on_to_setup_button_up"]
+[connection signal="button_up" from="ShowQR" to="." method="_on_show_qr_button_up"]

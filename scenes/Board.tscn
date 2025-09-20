@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://br75mlsdxgqay"]
+
+[ext_resource type="Script" uid="uid://b3aq2ysvcg8yw" path="res://scripts/Board.gd" id="1_qails"]
+[ext_resource type="PackedScene" uid="uid://bqoowxrcw5v8y" path="res://scenes/prefabs/CardMenu.tscn" id="2_hs2ul"]
+
+[node name="Board" type="GridContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+script = ExtResource("1_qails")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CardMenuPopUp" parent="CanvasLayer" instance=ExtResource("2_hs2ul")]
+visible = false
