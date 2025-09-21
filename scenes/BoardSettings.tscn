@@ -1,0 +1,234 @@
+[gd_scene load_steps=3 format=3 uid="uid://w27lkgg817u1"]
+
+[ext_resource type="Script" uid="uid://cv164uys4ryhl" path="res://scripts/board_settings.gd" id="1_boe25"]
+[ext_resource type="ButtonGroup" uid="uid://647q0wd2wpb2" path="res://assets/resources/number_of_cards.tres" id="2_cmq20"]
+
+[node name="BoardSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_boe25")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+
+[node name="LeftMenu" type="VBoxContainer" parent="VBoxContainer/HBoxContainer1"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer1/LeftMenu"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "< BACK"
+
+[node name="NumberOfCards" type="PanelContainer" parent="VBoxContainer/HBoxContainer1/LeftMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "NUMBER OF CARDS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Button20" type="Button" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = ExtResource("2_cmq20")
+text = "20"
+
+[node name="Button25" type="Button" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("2_cmq20")
+text = "25"
+
+[node name="Button30" type="Button" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = ExtResource("2_cmq20")
+text = "30"
+
+[node name="Button36" type="Button" parent="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = ExtResource("2_cmq20")
+text = "36"
+
+[node name="FakeBoard" type="GridContainer" parent="VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+
+[node name="Time" type="PanelContainer" parent="VBoxContainer/HBoxContainer1"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer1/Time"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "TIME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
+text = "Commander"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "-"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "∞"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
+text = "Operatives"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "-"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "60s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer1/Time/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "CUSTOM
+WORDS"
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(540, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "ADVANCED SETTINGS"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 50
+text = "PLAY!"
+
+[connection signal="button_up" from="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer/Button20" to="." method="_on_button_20_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer/Button25" to="." method="_on_button_25_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer/Button30" to="." method="_on_button_30_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer1/LeftMenu/NumberOfCards/VBoxContainer/GridContainer/Button36" to="." method="_on_button_36_button_up"]

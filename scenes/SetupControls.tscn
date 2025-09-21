@@ -76,7 +76,7 @@ WORDS"
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "BOARD
+text = "ADVANCED
 SETTINGS"
 
 [node name="ToPlaying" type="Button" parent="VBoxContainer"]

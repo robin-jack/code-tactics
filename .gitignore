@@ -4,6 +4,14 @@
 
 # Godot editor settings (user-local)
 .godot/
+.nomedia
+
+# Godot-specific ignores
+export.cfg
+export_credentials.cfg
+*.tmp
+*.translation
+
 # keep project.godot tracked (it is at project root)
 !project.godot
 
@@ -12,6 +20,8 @@
 *.csproj
 *.sln
 *.userprefs
+data_*/
+mono_crash.*.json
 
 # Export/output folders
 export/
@@ -34,5 +44,4 @@ bin/
 build/
 
 # hole
-map_manager.gd
 .env
