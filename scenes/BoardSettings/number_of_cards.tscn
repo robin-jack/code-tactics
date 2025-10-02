@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2d726e67sh62"]
+
+[ext_resource type="Script" uid="uid://7h6mvx7d5r1" path="res://scenes/BoardSettings/number_of_cards.gd" id="1_1tih3"]
+[ext_resource type="ButtonGroup" uid="uid://647q0wd2wpb2" path="res://assets/resources/number_of_cards.tres" id="1_o4cov"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_cmq20"]
+color = Color(0.515625, 0.515625, 0.515625, 1)
+thickness = 3
+
+[node name="NumberOfCards" type="PanelContainer"]
+custom_minimum_size = Vector2(360, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -96.5
+offset_right = 180.0
+offset_bottom = 96.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1tih3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 40
+text = "NUMBER OF CARDS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_cmq20")
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="Button20" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = ExtResource("1_o4cov")
+text = "20"
+
+[node name="Button25" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_o4cov")
+text = "25"
+
+[node name="Button30" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = ExtResource("1_o4cov")
+text = "30"
+
+[node name="Button36" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = ExtResource("1_o4cov")
+text = "36"

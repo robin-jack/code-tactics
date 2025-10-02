@@ -1,0 +1,124 @@
+[gd_scene load_steps=4 format=3 uid="uid://w27lkgg817u1"]
+
+[ext_resource type="Script" uid="uid://cv164uys4ryhl" path="res://scripts/board_advanced_settings.gd" id="1_78218"]
+[ext_resource type="PackedScene" uid="uid://c2d726e67sh62" path="res://scenes/BoardSettings/number_of_cards.tscn" id="2_yxkib"]
+[ext_resource type="PackedScene" uid="uid://bva4a0bp3s1qu" path="res://scenes/BoardSettings/time_per_round.tscn" id="3_6kbya"]
+
+[node name="BoardAdvancedSettings" type="Control" node_paths=PackedStringArray("fakeboard")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_78218")
+fakeboard = NodePath("FakeBoard")
+
+[node name="FakeBoard" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="HBoxContainer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 138.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "< BACK"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 80
+text = "BOARD SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+
+[node name="NumberOfCards" parent="VBoxContainer/VBoxContainer2/HBoxContainer1" instance=ExtResource("2_yxkib")]
+layout_mode = 2
+size_flags_horizontal = 2
+advanced = true
+
+[node name="Time" parent="VBoxContainer/VBoxContainer2/HBoxContainer1" instance=ExtResource("3_6kbya")]
+layout_mode = 2
+size_flags_horizontal = 10
+advanced = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CustomButton" type="Button" parent="VBoxContainer/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "CUSTOM
+WORDS"
+
+[node name="AdvancedContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AdvancedButton" type="Button" parent="VBoxContainer/VBoxContainer2/HBoxContainer2/AdvancedContainer"]
+custom_minimum_size = Vector2(540, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 40
+text = "ADVANCED SETTINGS"
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 60
+text = "PLAY!"
+
+[connection signal="button_up" from="VBoxContainer/VBoxContainer2/HBoxContainer2/AdvancedContainer/AdvancedButton" to="." method="_on_advanced_button_button_up"]
