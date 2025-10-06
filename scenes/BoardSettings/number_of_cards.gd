@@ -1,11 +1,22 @@
 extends PanelContainer
 
-@export var advanced: bool = false
+
 @onready var grid_container = $VBoxContainer/GridContainer
 @onready var button_36 = $VBoxContainer/GridContainer/Button36
 
+const adv_rect: Rect2 = Rect2(Vector2(-960, 160), Vector2(360, 540))
+var original_rect: Rect2
+signal selected(col, nc)
+
 func _ready():
-	if advanced:
+	original_rect = Rect2(position, size)
+
+func advancify(adv: bool):
+	if adv:
 		grid_container.columns = 2
-		button_36.visible = true
+	else:
+		grid_container.columns = 1
+	button_36.visible = adv
 	
+func _on_number_of_cards_button_up(col: int, nc: int):
+	selected.emit(col, nc)

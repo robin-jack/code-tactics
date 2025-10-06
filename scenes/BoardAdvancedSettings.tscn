@@ -82,12 +82,10 @@ theme_override_constants/separation = 32
 [node name="NumberOfCards" parent="VBoxContainer/VBoxContainer2/HBoxContainer1" instance=ExtResource("2_yxkib")]
 layout_mode = 2
 size_flags_horizontal = 2
-advanced = true
 
 [node name="Time" parent="VBoxContainer/VBoxContainer2/HBoxContainer1" instance=ExtResource("3_6kbya")]
 layout_mode = 2
 size_flags_horizontal = 10
-advanced = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 240)

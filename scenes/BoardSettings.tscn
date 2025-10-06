@@ -1,71 +1,121 @@
-[gd_scene load_steps=3 format=3 uid="uid://buttq2giwpqcc"]
+[gd_scene load_steps=8 format=3 uid="uid://buttq2giwpqcc"]
 
+[ext_resource type="Script" uid="uid://bjur2ohhvn2x0" path="res://scenes/BoardSettings/board_settings.gd" id="1_xn3po"]
+[ext_resource type="Script" uid="uid://b176lfq3ormr7" path="res://scenes/BoardSettings/back_button.gd" id="2_boe25"]
 [ext_resource type="PackedScene" uid="uid://c2d726e67sh62" path="res://scenes/BoardSettings/number_of_cards.tscn" id="2_xn3po"]
 [ext_resource type="PackedScene" uid="uid://bva4a0bp3s1qu" path="res://scenes/BoardSettings/time_per_round.tscn" id="3_boe25"]
+[ext_resource type="Script" uid="uid://dbom78t2ect7f" path="res://scenes/BoardSettings/custom_button.gd" id="3_ewmv7"]
+[ext_resource type="Script" uid="uid://bh12c61u6cx3b" path="res://scenes/BoardSettings/play_button.gd" id="6_v7h2j"]
+[ext_resource type="Script" uid="uid://dmx3o3vuta4yb" path="res://scenes/BoardSettings/advanced_button.gd" id="6_xw4bi"]
 
-[node name="Control" type="VBoxContainer"]
-custom_minimum_size = Vector2(610, 0)
+[node name="Control" type="Control"]
+layout_mode = 3
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -301.5
-offset_right = 301.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xn3po")
 
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+offset_left = -305.0
+offset_right = 305.0
+offset_bottom = 120.0
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
 text = "BOARD SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(510, 0)
+[node name="BackButton" type="Button" parent="." groups=["adv_node"]]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="BackButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
+offset_left = -150.0
+offset_top = 140.0
+offset_right = 150.0
+offset_bottom = 220.0
 theme_override_font_sizes/font_size = 50
 text = "< BACK"
+script = ExtResource("2_boe25")
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="CustomButton" type="Button" parent="." groups=["adv_node"]]
 layout_mode = 2
+offset_left = -250.0
+offset_top = 240.0
+offset_right = 250.0
+offset_bottom = 340.0
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "CUSTOM WORDS"
+script = ExtResource("3_ewmv7")
 
-[node name="NumberOfCards" parent="VBoxContainer" instance=ExtResource("2_xn3po")]
-layout_mode = 2
+[node name="NumberOfCards" parent="." groups=["adv_node"] instance=ExtResource("2_xn3po")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -370.0
+offset_top = 360.0
+offset_right = -10.0
+offset_bottom = 720.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="Time" parent="VBoxContainer" instance=ExtResource("3_boe25")]
+[node name="Time" parent="." groups=["adv_node"] instance=ExtResource("3_boe25")]
 layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 360.0
+offset_right = 370.0
+offset_bottom = 720.0
 
-[node name="AdvancedButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
+[node name="AdvancedButton" type="Button" parent="." groups=["adv_node"]]
+layout_mode = 0
+offset_left = -250.0
+offset_top = 740.0
+offset_right = 250.0
+offset_bottom = 840.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "ADVANCED SETTINGS"
+script = ExtResource("6_xw4bi")
 
-[node name="CustomButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(360, 0)
+[node name="PlayButton" type="Button" parent="." groups=["adv_node"]]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 40
-text = "CUSTOM WORDS"
-
-[node name="Control2" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+offset_left = -250.0
+offset_top = 860.0
+offset_right = 250.0
+offset_bottom = 1060.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 theme_override_font_sizes/font_size = 60
-text = "GO"
+text = "GO!"
+script = ExtResource("6_v7h2j")
+
+[node name="FakeBoard" type="GridContainer" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+
+[connection signal="button_up" from="AdvancedButton" to="." method="_on_advanced_button_button_up"]

@@ -6,6 +6,8 @@ const CARD_PH = preload("res://assets/sprites/card_placeholder.png")
 const CARD_PH_SMALL = preload("res://assets/sprites/card_placeholder_small.png")
 const CARD_PLACEHOLDER = preload("res://scenes/prefabs/CardPlaceholder.tscn")
 
+@onready var time = $VBoxContainer/VBoxContainer2/HBoxContainer1/Time
+
 var card_texture: Texture = CARD_PH
 
 func _ready():

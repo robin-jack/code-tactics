@@ -8,7 +8,6 @@ color = Color(0.515625, 0.515625, 0.515625, 1)
 thickness = 3
 
 [node name="NumberOfCards" type="PanelContainer"]
-custom_minimum_size = Vector2(360, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -47,7 +46,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
-columns = 3
 
 [node name="Button20" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -86,3 +84,8 @@ theme_override_font_sizes/font_size = 50
 toggle_mode = true
 button_group = ExtResource("1_o4cov")
 text = "36"
+
+[connection signal="button_up" from="VBoxContainer/GridContainer/Button20" to="." method="_on_number_of_cards_button_up" binds= [5, 20]]
+[connection signal="button_up" from="VBoxContainer/GridContainer/Button25" to="." method="_on_number_of_cards_button_up" binds= [5, 25]]
+[connection signal="button_up" from="VBoxContainer/GridContainer/Button30" to="." method="_on_number_of_cards_button_up" binds= [6, 30]]
+[connection signal="button_up" from="VBoxContainer/GridContainer/Button36" to="." method="_on_number_of_cards_button_up" binds= [6, 36]]
