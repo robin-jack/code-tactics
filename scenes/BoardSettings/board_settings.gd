@@ -19,21 +19,6 @@ func _ready():
 func _on_advanced_button_button_up():
 	advanced = !advanced
 	tween_to_target()
-	#var tw = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	#tw.stop()
-	## wait for fakeboard anim then do tween_to_target anim
-	#if !advanced:
-		#tw.tween_property(fakeboard, "modulate", Color.TRANSPARENT, duration)
-		#tw.play()
-		#await tw.finished
-		#fakeboard.visible = false
-		#await tween_to_target().finished
-	## wait for tween_to_target anim then do fakeboard anim
-	#if advanced:
-		#await tween_to_target().finished
-		#fakeboard.visible = true
-		#tw.tween_property(fakeboard, "modulate", Color.WHITE, duration)
-		#tw.play()
 		
 func create_placeholder():
 	var card = TextureRect.new()
@@ -56,6 +41,7 @@ func _update_fakeboard(col: int, num_cards: int):
 	fakeboard.set_columns(col)
 
 func tween_to_target():
+	advanced_button.disabled = true
 	var targets = get_children().filter(func(child): return child.is_in_group("adv_node"))
 	var tw = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
@@ -73,3 +59,4 @@ func tween_to_target():
 	await tw.finished
 	if !advanced:
 		fakeboard.visible = false
+	advanced_button.disabled = false

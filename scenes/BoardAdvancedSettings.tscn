@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cv164uys4ryhl" path="res://scripts/board_advanced_settings.gd" id="1_78218"]
 [ext_resource type="PackedScene" uid="uid://c2d726e67sh62" path="res://scenes/BoardSettings/number_of_cards.tscn" id="2_yxkib"]
-[ext_resource type="PackedScene" uid="uid://bva4a0bp3s1qu" path="res://scenes/BoardSettings/time_per_round.tscn" id="3_6kbya"]
+[ext_resource type="PackedScene" uid="uid://bva4a0bp3s1qu" path="res://scenes/BoardSettings/TimeSettings.tscn" id="3_6kbya"]
 
 [node name="BoardAdvancedSettings" type="Control" node_paths=PackedStringArray("fakeboard")]
 layout_mode = 3

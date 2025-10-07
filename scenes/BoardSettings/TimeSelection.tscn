@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6kdxhfhnawh8"]
+
+[ext_resource type="Script" uid="uid://dgpflbsvgw276" path="res://scenes/BoardSettings/time_selection.gd" id="1_64f3j"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xn3po"]
+color = Color(0.513726, 0.513726, 0.513726, 1)
+thickness = 3
+
+[node name="TimeSelection" type="VBoxContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_64f3j")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
+text = "Per Round"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_xn3po")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="minus" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "-"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "120s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="plus" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "+"
+
+[connection signal="button_up" from="HBoxContainer/minus" to="." method="_on_minus_button_up"]
+[connection signal="button_up" from="HBoxContainer/plus" to="." method="_on_plus_button_up"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bjur2ohhvn2x0" path="res://scenes/BoardSettings/board_settings.gd" id="1_xn3po"]
 [ext_resource type="Script" uid="uid://b176lfq3ormr7" path="res://scenes/BoardSettings/back_button.gd" id="2_boe25"]
 [ext_resource type="PackedScene" uid="uid://c2d726e67sh62" path="res://scenes/BoardSettings/number_of_cards.tscn" id="2_xn3po"]
-[ext_resource type="PackedScene" uid="uid://bva4a0bp3s1qu" path="res://scenes/BoardSettings/time_per_round.tscn" id="3_boe25"]
+[ext_resource type="PackedScene" uid="uid://bva4a0bp3s1qu" path="res://scenes/BoardSettings/TimeSettings.tscn" id="3_boe25"]
 [ext_resource type="Script" uid="uid://dbom78t2ect7f" path="res://scenes/BoardSettings/custom_button.gd" id="3_ewmv7"]
 [ext_resource type="Script" uid="uid://bh12c61u6cx3b" path="res://scenes/BoardSettings/play_button.gd" id="6_v7h2j"]
 [ext_resource type="Script" uid="uid://dmx3o3vuta4yb" path="res://scenes/BoardSettings/advanced_button.gd" id="6_xw4bi"]
@@ -110,6 +110,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_top = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6

@@ -38,5 +38,5 @@ func set_menu(menu: MENU):
 func set_state(state: STATE):
 	current_state = state
 	if state == STATE.NEXT:
-		current_team = (current_team + 1) % 2
+		current_team = ((current_team + 1) % 2) as TEAM
 	state_changed.emit(state)
