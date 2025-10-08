@@ -34,7 +34,7 @@ text = "TIME"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" groups=["advanced"]]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 0

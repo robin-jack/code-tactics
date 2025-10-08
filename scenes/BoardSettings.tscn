@@ -101,7 +101,7 @@ theme_override_font_sizes/font_size = 60
 text = "GO!"
 script = ExtResource("6_v7h2j")
 
-[node name="FakeBoard" type="GridContainer" parent="."]
+[node name="FakeBoard" type="GridContainer" parent="." groups=["already_adv"]]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -120,4 +120,33 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 5
 
+[node name="LoadBoard" type="Button" parent="." groups=["already_adv"]]
+visible = false
+layout_mode = 0
+offset_left = -960.0
+offset_top = 720.0
+offset_right = -600.0
+offset_bottom = 880.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "LOAD BOARD"
+
+[node name="ResetBoard" type="Button" parent="." groups=["already_adv"]]
+visible = false
+layout_mode = 0
+offset_left = -960.0
+offset_top = 900.0
+offset_right = -600.0
+offset_bottom = 1060.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+disabled = true
+toggle_mode = true
+text = "RESET BOARD"
+
 [connection signal="button_up" from="AdvancedButton" to="." method="_on_advanced_button_button_up"]
+[connection signal="button_up" from="LoadBoard" to="." method="_on_load_board_button_up"]
+[connection signal="button_up" from="ResetBoard" to="." method="_on_reset_board_button_up"]
