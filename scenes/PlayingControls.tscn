@@ -64,7 +64,7 @@ size_flags_vertical = 1
 texture = ExtResource("5_gomo4")
 team = 1
 
-[node name="ToSetup" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="."]
 custom_minimum_size = Vector2(40, 30)
 layout_mode = 1
 offset_right = 8.0
@@ -106,5 +106,5 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 sub_viewport = NodePath("../..")
 
-[connection signal="button_up" from="ToSetup" to="." method="_on_to_setup_button_up"]
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]
 [connection signal="button_up" from="ShowQR" to="." method="_on_show_qr_button_up"]

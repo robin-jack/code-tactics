@@ -27,18 +27,15 @@ script = ExtResource("1_c7xb7")
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 45
 text = "TIME"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-visible = false
+[node name="TimePerRound" parent="VBoxContainer" instance=ExtResource("2_x2gd1")]
 layout_mode = 2
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxLine_xn3po")
 
 [node name="TimeCaptains" parent="VBoxContainer" groups=["advanced"] instance=ExtResource("2_x2gd1")]
 visible = false
@@ -51,5 +48,8 @@ layout_mode = 2
 title_text = "Soldiers"
 initial_seconds = 60
 
-[node name="TimePerRound" parent="VBoxContainer" groups=["advanced"] instance=ExtResource("2_x2gd1")]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_xn3po")

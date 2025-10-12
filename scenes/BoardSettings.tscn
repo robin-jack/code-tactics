@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://buttq2giwpqcc"]
+[gd_scene load_steps=11 format=3 uid="uid://buttq2giwpqcc"]
 
 [ext_resource type="Script" uid="uid://bjur2ohhvn2x0" path="res://scenes/BoardSettings/board_settings.gd" id="1_xn3po"]
 [ext_resource type="Script" uid="uid://b176lfq3ormr7" path="res://scenes/BoardSettings/back_button.gd" id="2_boe25"]
@@ -7,12 +7,14 @@
 [ext_resource type="Script" uid="uid://dbom78t2ect7f" path="res://scenes/BoardSettings/custom_button.gd" id="3_ewmv7"]
 [ext_resource type="Script" uid="uid://bh12c61u6cx3b" path="res://scenes/BoardSettings/play_button.gd" id="6_v7h2j"]
 [ext_resource type="Script" uid="uid://dmx3o3vuta4yb" path="res://scenes/BoardSettings/advanced_button.gd" id="6_xw4bi"]
+[ext_resource type="PackedScene" uid="uid://bwudsg5to86qq" path="res://scenes/BoardSettings/FakeBoard.tscn" id="8_05mmv"]
+[ext_resource type="PackedScene" uid="uid://djvyscvwt1u3u" path="res://scenes/prefabs/PopupQR.tscn" id="9_k7dam"]
+[ext_resource type="Texture2D" uid="uid://c4opu1ae28ihc" path="res://assets/sprites/loading.png" id="10_05mmv"]
 
-[node name="Control" type="Control"]
+[node name="BoardSettings" type="Control"]
 layout_mode = 3
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -20,69 +22,90 @@ script = ExtResource("1_xn3po")
 
 [node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-offset_left = -305.0
-offset_right = 305.0
-offset_bottom = 120.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -433.5
+offset_top = -520.0
+offset_right = 433.5
+offset_bottom = -399.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 80
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 100
 text = "BOARD SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="." groups=["adv_node"]]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = 140.0
+offset_top = -370.0
 offset_right = 150.0
-offset_bottom = 220.0
-theme_override_font_sizes/font_size = 50
-text = "< BACK"
+offset_bottom = -290.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "< BACK "
 script = ExtResource("2_boe25")
 
 [node name="CustomButton" type="Button" parent="." groups=["adv_node"]]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = 240.0
+offset_top = -270.0
 offset_right = 250.0
-offset_bottom = 340.0
+offset_bottom = -170.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "CUSTOM WORDS"
 script = ExtResource("3_ewmv7")
 
 [node name="NumberOfCards" parent="." groups=["adv_node"] instance=ExtResource("2_xn3po")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 offset_left = -370.0
-offset_top = 360.0
+offset_top = -150.0
 offset_right = -10.0
-offset_bottom = 720.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_bottom = 130.0
 
 [node name="Time" parent="." groups=["adv_node"] instance=ExtResource("3_boe25")]
-layout_mode = 2
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 offset_left = 10.0
-offset_top = 360.0
+offset_top = -150.0
 offset_right = 370.0
-offset_bottom = 720.0
+offset_bottom = 130.0
 
 [node name="AdvancedButton" type="Button" parent="." groups=["adv_node"]]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = 740.0
+offset_top = 150.0
 offset_right = 250.0
-offset_bottom = 840.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
@@ -90,43 +113,44 @@ text = "ADVANCED SETTINGS"
 script = ExtResource("6_xw4bi")
 
 [node name="PlayButton" type="Button" parent="." groups=["adv_node"]]
-layout_mode = 2
-offset_left = -250.0
-offset_top = 860.0
-offset_right = 250.0
-offset_bottom = 1060.0
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
-theme_override_font_sizes/font_size = 60
-text = "GO!"
-script = ExtResource("6_v7h2j")
-
-[node name="FakeBoard" type="GridContainer" parent="." groups=["already_adv"]]
-visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_bottom = -20.0
+offset_left = -250.0
+offset_top = 270.0
+offset_right = 250.0
+offset_bottom = 490.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 16
-columns = 5
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 80
+text = " GO!"
+script = ExtResource("6_v7h2j")
+
+[node name="FakeBoard" parent="." instance=ExtResource("8_05mmv")]
+visible = false
+layout_mode = 1
+offset_top = -10.0
+offset_bottom = -10.0
 
 [node name="LoadBoard" type="Button" parent="." groups=["already_adv"]]
 visible = false
-layout_mode = 0
-offset_left = -960.0
-offset_top = 720.0
-offset_right = -600.0
-offset_bottom = 880.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -920.0
+offset_top = 210.0
+offset_right = -560.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
@@ -135,11 +159,18 @@ text = "LOAD BOARD"
 
 [node name="ResetBoard" type="Button" parent="." groups=["already_adv"]]
 visible = false
-layout_mode = 0
-offset_left = -960.0
-offset_top = 900.0
-offset_right = -600.0
-offset_bottom = 1060.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -920.0
+offset_top = 360.0
+offset_right = -560.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
@@ -147,6 +178,29 @@ disabled = true
 toggle_mode = true
 text = "RESET BOARD"
 
+[node name="PopupQR" parent="." instance=ExtResource("9_k7dam")]
+layout_mode = 1
+title = "Scan to set Custom Words!"
+
+[node name="Loading" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_05mmv")
+
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]
+[connection signal="button_up" from="CustomButton" to="." method="_on_custom_button_button_up"]
 [connection signal="button_up" from="AdvancedButton" to="." method="_on_advanced_button_button_up"]
+[connection signal="button_up" from="PlayButton" to="." method="_on_play_button_button_up"]
 [connection signal="button_up" from="LoadBoard" to="." method="_on_load_board_button_up"]
 [connection signal="button_up" from="ResetBoard" to="." method="_on_reset_board_button_up"]

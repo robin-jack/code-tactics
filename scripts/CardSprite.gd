@@ -38,7 +38,7 @@ func set_words():
 	lb2.text = word
 	
 func _on_button_pressed():
-	if Global.current_menu == Global.MENU.SETUP:
+	if Global.current_menu != Global.MENU.SETUP:
 		menu.emit(self)
 	elif Global.current_menu == Global.MENU.PLAYING:
 		if Global.current_state == Global.STATE.PLAY:

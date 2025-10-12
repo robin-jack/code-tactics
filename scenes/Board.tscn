@@ -21,4 +21,6 @@ script = ExtResource("1_qails")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CardMenuPopUp" parent="CanvasLayer" instance=ExtResource("2_hs2ul")]
+unique_name_in_owner = true
+auto_translate_mode = 1
 visible = false

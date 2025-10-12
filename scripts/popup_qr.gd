@@ -2,10 +2,10 @@ extends Control
 
 @onready var popup = $PopupPanel
 @onready var margin = $PopupPanel/MarginContainer
-@onready var qr = $PopupPanel/MarginContainer/VBoxContainer/SecretQR
+@onready var qr = %QRCodeRect
+@onready var label = $PopupPanel/MarginContainer/VBoxContainer/Label
+
+@export var title: String = "qr title"
 
 func _ready():
-	margin.custom_minimum_size = Vector2(size.y/2, size.y/2)
-
-func set_qr(url):
-	qr.set_data(url)
+	label.text = title

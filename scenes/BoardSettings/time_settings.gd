@@ -2,11 +2,11 @@ extends PanelContainer
 
 @onready var time_per_round = $VBoxContainer/TimePerRound
 
-const adv_rect: Rect2 = Rect2(Vector2(600, 160), Vector2(360, 540))
+const adv_rect: Rect2 = Rect2(Vector2(1500, 160), Vector2(360, 540))
 var original_rect: Rect2
 
 func _ready():
-	original_rect = Rect2(position, size)
+	original_rect = Rect2(position - Vector2(20, 20), size)
 
 func advancify(adv: bool):
 	for child in get_tree().get_nodes_in_group("advanced"):
