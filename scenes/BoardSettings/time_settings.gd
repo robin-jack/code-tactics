@@ -2,7 +2,7 @@ extends PanelContainer
 
 @onready var time_per_round = $VBoxContainer/TimePerRound
 
-const adv_rect: Rect2 = Rect2(Vector2(1500, 160), Vector2(360, 540))
+@export var adv_rect: Rect2 = Rect2(Vector2(1500, 160), Vector2(360, 540))
 var original_rect: Rect2
 
 func _ready():

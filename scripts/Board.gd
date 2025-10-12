@@ -1,9 +1,10 @@
 extends BaseBoard
 
 func _ready():
+	CARD = preload("res://scenes/prefabs/Card.tscn")
 	cm.replace.connect(replace_card)
 	cm.edit.connect(edit_card)
-	mapper = MAP_MANAGER.new()
+	mapper = MAP_MANAGER.new(25)
 	await get_tree().create_timer(1).timeout
 	new_board()
 	

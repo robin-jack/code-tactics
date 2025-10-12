@@ -5,13 +5,15 @@ class_name MapManager
 const WORDS_FILE = preload("res://words.gd")
 const CHAMPIONS_FILE = preload("res://champions.gd")
 
+var num_cards: int
 var words_instance: Node
 var selected_words: Array
 var selected_code: Array
 var secret_map: Dictionary
 
-func _init():
+func _init(_num: int):
 	words_instance = WORDS_FILE.new()
+	num_cards = _num
 
 func create_secret_map(recode=true):
 	secret_map = {}
@@ -44,16 +46,16 @@ func _new_words():
 	var custom_words = []
 	if Global.custom_words:
 		custom_words = await _get_custom_words()
-	selected_words = _pick_random_words(Global.num_cards, unique_words, custom_words)
+	selected_words = _pick_random_words(num_cards, unique_words, custom_words)
 
 func _new_code():
 	print_debug("Creating secret map")
-	var one_third = int(floor(Global.num_cards / 3))
+	var one_third = int(floor(num_cards / 3))
 	var red_cards = one_third
 	var blue_cards = one_third
 	var assasin_cards = 1
 
-	var civil_cards = Global.num_cards - (1 + red_cards + blue_cards + assasin_cards)
+	var civil_cards = num_cards - (1 + red_cards + blue_cards + assasin_cards)
 	# Create the array
 	for i in range(red_cards):
 		selected_code.append(Global.TYPE.RED)

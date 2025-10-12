@@ -19,9 +19,16 @@ signal transitioned(scn)
 var duration: float = 1
 var advanced: bool = false
 
+var board_size: Vector2 = Vector2(5, 25)
+
 func _ready():
-	number_of_cards.selected.connect(fakeboard.update_fakeboard)
-	fakeboard.update_fakeboard(5, 25)
+	number_of_cards.selected.connect(_set_board_size)
+	fakeboard.update_fakeboard(board_size.x, board_size.y)
+
+func _set_board_size(col: int, num_cards: int):
+	board_size = Vector2(col, num_cards)
+	fakeboard.small = true if col > 5 else false
+	fakeboard.update_fakeboard(col, num_cards)
 
 func _on_advanced_button_button_up():
 	advanced = !advanced
@@ -40,15 +47,18 @@ func _on_custom_button_button_up():
 		popup_qr.popup.popup_centered()
 	else:
 		print_debug("ERROR NO URL :()")
-		
 
 func _on_load_board_button_up():
+	number_of_cards.buttons_disabled(true)
 	load_board.disabled = true
 	reset_board.disabled = false
+	fakeboard.load_board(board_size.x, board_size.y)
 
 func _on_reset_board_button_up():
+	number_of_cards.buttons_disabled(false)
 	load_board.disabled = false
 	reset_board.disabled = true
+	fakeboard.update_fakeboard(board_size.x, board_size.y)
 
 func _on_back_button_button_up():
 	transitioned.emit(back)

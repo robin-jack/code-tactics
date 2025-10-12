@@ -23,7 +23,6 @@ func _ready():
 	Global.state_changed.connect(change_background)
 	current = %MarginContainer/MainMenu
 	current.transitioned.connect(transition_to)
-	mapper = MAP_MANAGER.new()
 
 func _new_board():
 	secret_map = await mapper.create_secret_map()

@@ -6,10 +6,16 @@ signal state_changed(state: STATE)
 var map: Dictionary
 var doc_name: String
 
+#settings
 var num_cards: int = 25
 var columns: int = 5
-var max_points: int = 0
 var custom_words: bool = false
+var mix: bool
+var t_round: int = 180
+var t_captains: int = 120
+var t_soldiers: int = 60
+
+var max_points: int = 0
 
 enum TEAM { RED, BLUE }
 enum TYPE { RED, BLUE, BROWN, BLACK}

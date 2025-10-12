@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq43gc53e7i75"]
+
+[ext_resource type="Script" uid="uid://chqlqrrr8cio1" path="res://scripts/card_ph.gd" id="1_54m3w"]
+[ext_resource type="Texture2D" uid="uid://djsfu7nhap8nc" path="res://assets/sprites/card_fakeboard.png" id="2_54m3w"]
+
+[node name="CardPH" type="Control" groups=["card"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 175.0
+offset_bottom = 117.0
+script = ExtResource("1_54m3w")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_54m3w")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Adios"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]

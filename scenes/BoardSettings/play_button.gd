@@ -1,6 +1,6 @@
 extends Button
 
-const adv_rect: Rect2 = Rect2(Vector2(1500, 840), Vector2(360, 180))
+@export var adv_rect: Rect2 = Rect2(Vector2(1500, 840), Vector2(360, 180))
 var original_rect: Rect2
 
 func _ready():

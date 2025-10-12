@@ -3,8 +3,8 @@ extends PopupPanel
 @onready var line = $LineEdit
 @onready var hbox = $HBoxContainer
 
-signal replace(card: Card)
-signal edit(card: Card, new_word: String)
+signal replace(card: Control)
+signal edit(card: Control, new_word: String)
 
 var selected_card: Node = null
 

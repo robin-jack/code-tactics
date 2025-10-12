@@ -1,7 +1,5 @@
 extends Control
 
-class_name  Card
-
 @onready var flip = $FlipTexture
 @onready var button: TextureButton = $Button
 @onready var lb1: Label = $Button/Label1
@@ -12,6 +10,8 @@ class_name  Card
 @export var type: int = 0
 
 var flipped: bool = true
+var small: bool = false
+
 signal menu(card)
 
 func _ready():
@@ -20,6 +20,7 @@ func _ready():
 	_center_text()
 	
 func _center_text():
+	# font_size = 5 + (7000 / size.x)
 	if lb1.size.x > 335:
 		lb1.add_theme_font_size_override("font_size", 25)
 		lb2.add_theme_font_size_override("font_size", 25)
