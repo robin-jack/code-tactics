@@ -10,7 +10,6 @@ extends Control
 @export var type: int = 0
 
 var flipped: bool = true
-var small: bool = false
 
 signal menu(card)
 

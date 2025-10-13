@@ -1,18 +1,27 @@
 extends VBoxContainer
 
 @onready var title = $Label
-@onready var time = $HBoxContainer/Label
+@onready var time_label = $HBoxContainer/Label
 
+@export var time_per: StringName
 @export var title_text: String = "Per Round"
-@export var initial_seconds: int = 120
+var time: float : set = _set_time
 const step: int = 10
 
 func _ready():
+	time = Settings.game.get(time_per)
 	title.text = title_text
-	time.text = "%ds" % initial_seconds
+	time_label.text = "%ds" % time
+
+func _set_time(new_time: float):
+	time = new_time
+	Settings.game.set(time_per, time)
+	print(time_per, Settings.game.get(time_per))
 
 func _on_minus_button_up():
-	time.text = "%ds" % (int(time.text) - step)
+	time -= step
+	time_label.text = "%ds" % time
 
 func _on_plus_button_up():
-	time.text = "%ds" % (int(time.text) + step)
+	time += step
+	time_label.text = "%ds" % time

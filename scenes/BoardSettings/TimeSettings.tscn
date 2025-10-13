@@ -36,17 +36,19 @@ vertical_alignment = 2
 
 [node name="TimePerRound" parent="VBoxContainer" instance=ExtResource("2_x2gd1")]
 layout_mode = 2
+time_per = &"tp_round"
 
 [node name="TimeCaptains" parent="VBoxContainer" groups=["advanced"] instance=ExtResource("2_x2gd1")]
 visible = false
 layout_mode = 2
+time_per = &"tp_captains"
 title_text = "Captains"
 
 [node name="TimeSoldiers" parent="VBoxContainer" groups=["advanced"] instance=ExtResource("2_x2gd1")]
 visible = false
 layout_mode = 2
+time_per = &"tp_soldiers"
 title_text = "Soldiers"
-initial_seconds = 60
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 visible = false

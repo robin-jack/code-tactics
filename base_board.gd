@@ -10,7 +10,6 @@ var mapper: MapManager
 var secret_map: Dictionary
 
 var CARD: PackedScene
-var small: bool = false
 
 func replace_card(old_card: Control):
 	print_debug("replacing card")
@@ -26,7 +25,6 @@ func swap_cards(old_card: Control, new_word: String):
 	var new_card = CARD.instantiate()
 	new_card.word = new_word
 	new_card.type = old_card.type
-	new_card.small = small
 	new_card.menu.connect(show_card_menu_for)
 	print_debug("SWAPPING")
 	await get_tree().process_frame

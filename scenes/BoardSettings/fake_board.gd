@@ -10,7 +10,7 @@ func _ready():
 	
 func _create_placeholder():
 	var ph = TextureRect.new()
-	if small:
+	if Settings.game.use_small:
 		ph.texture = CARD_PLACEHOLDER_SMALL
 		ph.size = Vector2(145, 97)
 	else:
@@ -18,23 +18,22 @@ func _create_placeholder():
 		ph.size = Vector2(175, 117)
 	return ph
 		
-func update_fakeboard(col: int, num_cards: int):
+func update_fakeboard():
 	_clear()
-	for i in range(num_cards):
+	for i in range(Settings.game.num_cards):
 		var card_ph = _create_placeholder()
 		card_ph.add_to_group("card")
 		add_child(card_ph)
-	set_columns(col)
+	set_columns(Settings.game.col)
 
-func load_board(col: int, num_cards: int):
+func load_board():
 	_clear()
-	mapper = MAP_MANAGER.new(num_cards)
+	mapper = MAP_MANAGER.new(Settings.game.num_cards)
 	secret_map = await mapper.create_secret_map()
-	for i in range(num_cards):
+	for i in range(Settings.game.num_cards):
 		var card_fb = CARD.instantiate()
 		card_fb.word = secret_map.keys()[i]
 		card_fb.type = secret_map.values()[i]
-		card_fb.small = small
 		card_fb.menu.connect(show_card_menu_for)
 		add_child(card_fb)
-	set_columns(col)
+	set_columns(Settings.game.col)

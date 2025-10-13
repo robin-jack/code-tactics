@@ -5,7 +5,6 @@ const CARD_FAKEBOARD = preload("res://assets/sprites/card_fakeboard.png")
 const CARD_FAKEBOARD_SMALL = preload("res://assets/sprites/card_fakeboard_small.png")
 
 var texture: Texture2D = CARD_FAKEBOARD
-var small: bool = false
 
 @onready var texture_button = $TextureButton
 @onready var label = $TextureButton/Label
@@ -22,7 +21,7 @@ func _ready():
 	_center_text()
 
 func _set_texture():
-	if small:
+	if Settings.game.use_small:
 		texture = CARD_FAKEBOARD_SMALL
 		self.custom_minimum_size = Vector2(145, 97)
 	else:

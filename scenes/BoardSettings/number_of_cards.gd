@@ -9,6 +9,8 @@ signal selected(col, nc)
 
 func _ready():
 	original_rect = Rect2(position - Vector2(20, 20), size)
+	var num = Settings.game.num_cards
+	get_node("VBoxContainer/GridContainer/Button" + str(num)).button_pressed = true
 
 func advancify(adv: bool):
 	if adv:
