@@ -5,13 +5,14 @@ extends Control
 @onready var u_timer = $UpdateTimer
 @onready var anim = $CenterContainer/AnimatedSprite2D
 
-var set_time: int = 30
+var set_time: int = 0
 
 func _ready():
+	set_time = Settings.game.tp_round
 	Global.state_changed.connect(state_changed)
-	Global.card_pressed.connect(card_pressed)
+	Global.card_pressed.connect(check_type)
 	timer.wait_time = set_time
-	update(set_time)
+	_update(set_time)
 	label.pivot_offset = label.size / 2.0
 
 func state_changed(state):
@@ -20,15 +21,15 @@ func state_changed(state):
 			timer.paused = true
 			self.disabled = true
 
-func update(time_left):
+func _update(time_left):
 	time_left = int(ceil(time_left))
 	var minutes = time_left / 60
 	var seconds = time_left % 60
 	label.text = str(minutes) + ":" + str(seconds).lpad(2, "0")
 
-func card_pressed(type):
-	# mistake made - stop timer
+func check_type(type):
 	if type == Global.TYPE.BLACK:
+		# mistake made - stop timer
 		print_debug("!!! GAME OVER !!!")
 		Global.set_state(Global.STATE.OVER)
 	elif type != Global.current_team:
@@ -39,12 +40,12 @@ func _on_timer_timeout():
 	u_timer.stop()
 	timer.stop()
 	#TODO timer animation
-	update(set_time)
+	_update(set_time)
 	Global.set_state(Global.STATE.NEXT)
 	await change_label_state(false)
 	
 func _on_update_timer_timeout():
-	update(timer.time_left)
+	_update(timer.time_left)
 
 func _on_button_up():
 	var playing: bool = timer.is_stopped() || timer.paused

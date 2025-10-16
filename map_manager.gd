@@ -5,83 +5,92 @@ class_name MapManager
 const WORDS_FILE = preload("res://words.gd")
 const CHAMPIONS_FILE = preload("res://champions.gd")
 
-var num_cards: int
-var words_instance: Node
-var selected_words: Array
-var selected_code: Array
-var secret_map: Dictionary
+var _num_cards: int = 0
+var _words_instance: Node = null
+var _selected_words: Array = []
+var _selected_code: Array = []
+var _secret_map: Dictionary = {}
 
-func _init(_num: int):
-	words_instance = WORDS_FILE.new()
-	num_cards = _num
+var max_points: int = 0
 
-func create_secret_map(recode=true):
-	secret_map = {}
+func _init():
+	_words_instance = WORDS_FILE.new()
+	_num_cards = Settings.game.num_cards
+
+func get_map() -> Dictionary:
+	if _secret_map == null or _secret_map.is_empty():
+		return await _create_secret_map()
+	return _secret_map
+
+func _create_secret_map(recode=true):
+	_secret_map = {}
 	await _new_words()
 	if recode:
 		_new_code()
 
-	for i in range(selected_words.size()):
-		secret_map[selected_words[i]] = selected_code[i]
+	for i in range(_selected_words.size()):
+		_secret_map[_selected_words[i]] = _selected_code[i]
+		
+	Global.max_points = max_points
 	
-	return secret_map
+	return _secret_map
 
 func replace_word(old_word: String):
-	var unique_words = words_instance.WORDS.filter(func(item): return item not in selected_words)
+	var unique_words = _words_instance.WORDS.filter(func(item): return item not in _selected_words)
 	var new_word = unique_words.pick_random()
-	for i in range(selected_words.size()):
-		if selected_words[i] == old_word:
-			selected_words[i] = new_word
+	for i in range(_selected_words.size()):
+		if _selected_words[i] == old_word:
+			_selected_words[i] = new_word
 	return new_word
 
 func editted_word(old_word: String, new_word: String) -> void:
-	for i in range(selected_words.size()):
-		if selected_words[i] == old_word:
-			selected_words[i] = new_word
+	for i in range(_selected_words.size()):
+		if _selected_words[i] == old_word:
+			_selected_words[i] = new_word
 
 func _new_words():
 	# select only words not contained in previous selected words (if any)
 	print_debug("Selecting unique words")
-	var unique_words = words_instance.WORDS.filter(func(item): return item not in selected_words)
+	var unique_words = _words_instance.WORDS.filter(func(item): return item not in _selected_words)
 	var custom_words = []
-	if Global.custom_words:
+	if Settings.game.custom_words:
 		custom_words = await _get_custom_words()
-	selected_words = _pick_random_words(num_cards, unique_words, custom_words)
+	_selected_words = _pick_random_words(_num_cards, unique_words, custom_words)
 
 func _new_code():
 	print_debug("Creating secret map")
-	var one_third = int(floor(num_cards / 3))
+	var one_third = int(floor(_num_cards / 3))
 	var red_cards = one_third
 	var blue_cards = one_third
 	var assasin_cards = 1
 
-	var civil_cards = num_cards - (1 + red_cards + blue_cards + assasin_cards)
+	var civil_cards = _num_cards - (1 + red_cards + blue_cards + assasin_cards)
 	# Create the array
 	for i in range(red_cards):
-		selected_code.append(Global.TYPE.RED)
+		_selected_code.append(Global.TYPE.RED)
 	for i in range(blue_cards):
-		selected_code.append(Global.TYPE.BLUE)
+		_selected_code.append(Global.TYPE.BLUE)
 	for i in range(civil_cards):
-		selected_code.append(Global.TYPE.BROWN)
-	selected_code.append(Global.TYPE.BLACK)
+		_selected_code.append(Global.TYPE.BROWN)
+	_selected_code.append(Global.TYPE.BLACK)
 	
 	# Ensure there are more 0's than 1's or vice versa randomly
 	var starting_team: Global.TEAM
 	if randf() < 0.5:
-		selected_code.append(Global.TYPE.RED)
+		_selected_code.append(Global.TYPE.RED)
 		starting_team = Global.TEAM.RED
 	else:
-		selected_code.append(Global.TYPE.BLUE)
+		_selected_code.append(Global.TYPE.BLUE)
 		starting_team = Global.TEAM.BLUE
 		
 	# Shuffle the array to randomize the order
 	Global.current_team = starting_team
-	Global.max_points = one_third + 1
-	selected_code = _fisher_yates_shuffle(selected_code)
+	max_points = one_third + 1
+	_selected_code = _fisher_yates_shuffle(_selected_code)
 
 func _get_custom_words():
 	var rooms = "pass"
-	var document = await rooms.get_doc(Global.doc_name)
+	var document = await rooms.get_doc(FirebaseControl.doc_name)
 	
 	if(document == null):
 		print_debug("Failed to get Document")

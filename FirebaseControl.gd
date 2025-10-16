@@ -7,11 +7,12 @@ const _password : String = "Password1234"
 
 var rooms: FirestoreCollection
 var webapp : String = "https://secretcode-code.web.app?room="
+var doc_name: String
 
 var login_pending : bool = false
 
 func _ready():
-	# connect signals (use connect(signal_name, Callable) — two args)
+	# connect signals (use connect(signal_name, Callable))
 	Firebase.Auth.connect("login_succeeded", Callable(self, "_on_FirebaseAuth_login_succeeded"))
 	Firebase.Auth.connect("login_failed", Callable(self, "_on_login_failed"))
 
@@ -65,8 +66,9 @@ func _create_qr_async() -> void:
 		emit_signal("login_done", false, {"code": "add_failed", "message": "rooms.add returned null"})
 		return
 
-	Global.doc_name = document.doc_name
-	var url : String = webapp + Global.doc_name
+	doc_name = document.doc_name
+	var url : String = webapp + doc_name
 	print_debug("Room created: %s" % url)
 	login_pending = false
-	emit_signal("login_done", true, url)
+	#emit_signal("login_done", true, url)
+	login_done.emit(true, url)

@@ -38,13 +38,10 @@ func set_words():
 	lb2.text = word
 	
 func _on_button_pressed():
-	if Global.current_menu != Global.MENU.SETUP:
-		menu.emit(self)
-	elif Global.current_menu == Global.MENU.PLAYING:
-		if Global.current_state == Global.STATE.PLAY:
-			button.disabled = true
-			anim.play("flip")
-			button.self_modulate = Global.emit_card(type)
+	if Global.current_state == Global.STATE.PLAY:
+		button.disabled = true
+		anim.play("flip")
+		button.self_modulate = Global.emit_card(type)
 
 func _on_animation__finished(_anim_name):
 	flipped = !flipped

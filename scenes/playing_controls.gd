@@ -8,7 +8,6 @@ signal transitioned(scn)
 @onready var secret_map = $SubViewport/MarginContainer/SecretMap
 
 func _ready():
-	Global.current_menu = Global.MENU.PLAYING
 	secret_map.create_secret_grid()
 	var url = await secret_map.create_secret_image()
 	popup_qr.qr.set_data(url)

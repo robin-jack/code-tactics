@@ -2,8 +2,6 @@ extends GridContainer
 
 class_name BaseBoard
 
-const MAP_MANAGER = preload("res://map_manager.gd")
-
 @onready var cm = %CardMenuPopUp
 
 var mapper: MapManager

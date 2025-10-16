@@ -1,7 +1,7 @@
 extends Control
 
 const back: String = "res://scenes/TitleMenu.tscn"
-const next: String = "res://scenes/PlayingControls.tscn"
+const next: String = "res://scenes/game_surface/GameSurface.tscn"
 signal transitioned(scn)
 
 # core settings logic
@@ -101,7 +101,6 @@ func tween_to_target():
 
 func _exit_tree():
 	Settings.save()
-	print(Settings.game)
 
 const positions_backup: String = '''
 Label[P: (526.5, 19.13636), S: (867.0, 122.7273)]

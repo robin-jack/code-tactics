@@ -3,19 +3,7 @@ extends Node
 signal card_pressed(type: TYPE)
 signal state_changed(state: STATE)
 
-var map: Dictionary
-var doc_name: String
-
-#settings
-var num_cards: int = 25
-var columns: int = 5
-var custom_words: bool = false
-var mix: bool
-var t_round: int = 180
-var t_captains: int = 120
-var t_soldiers: int = 60
-
-var max_points: int = 0
+var _map_manager: MapManager = null
 
 enum TEAM { RED, BLUE }
 enum TYPE { RED, BLUE, BROWN, BLACK}
@@ -29,9 +17,17 @@ const COLOR := {
 	TYPE.BLACK: Color(0.1, 0.1, 0.1),
 }
 
+var max_points: int = 0
 var current_team: TEAM
 var current_menu: MENU = MENU.SETTINGS
 var current_state: STATE = STATE.NEXT
+
+func get_map_manager() -> MapManager:
+	if _map_manager and is_instance_valid(_map_manager):
+		return _map_manager
+		
+	_map_manager = MapManager.new()
+	return _map_manager
 
 func emit_card(type):
 	card_pressed.emit(type)
