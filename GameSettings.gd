@@ -13,6 +13,7 @@ class_name GameSettings extends Resource
 @export var tp_captains: float = 120
 @export var tp_soldiers: float = 60
 @export var self_start_timer: bool = false
+@export var can_pause: bool = true
 
 func _set_col(new_col: int):
 	col = new_col

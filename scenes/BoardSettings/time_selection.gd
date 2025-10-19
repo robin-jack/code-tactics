@@ -16,7 +16,6 @@ func _ready():
 func _set_time(new_time: float):
 	time = new_time
 	Settings.game.set(time_per, time)
-	print(time_per, Settings.game.get(time_per))
 
 func _on_minus_button_up():
 	time -= step

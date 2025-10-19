@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca1qtudmny48t"]
+[gd_scene load_steps=6 format=3 uid="uid://ca1qtudmny48t"]
 
 [ext_resource type="Script" uid="uid://c4g1yx371mws0" path="res://scenes/game_surface/game_surface.gd" id="1_ahv25"]
 [ext_resource type="PackedScene" uid="uid://br75mlsdxgqay" path="res://scenes/Board.tscn" id="1_emaio"]
 [ext_resource type="PackedScene" uid="uid://cm5vn3wyk30cu" path="res://scenes/PlayingControls.tscn" id="2_ahv25"]
+[ext_resource type="PackedScene" uid="uid://djvyscvwt1u3u" path="res://scenes/prefabs/PopupQR.tscn" id="2_d6o15"]
+[ext_resource type="PackedScene" uid="uid://ijj62ln56aam" path="res://scenes/SecretMap.tscn" id="5_0t537"]
 
 [node name="GameSurface" type="Control"]
 layout_mode = 3
@@ -24,6 +26,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PopupQR" parent="." instance=ExtResource("2_d6o15")]
+layout_mode = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -41,3 +46,25 @@ size_flags_vertical = 1
 [node name="PlayingControls" parent="HBoxContainer" instance=ExtResource("2_ahv25")]
 layout_mode = 2
 size_flags_horizontal = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(720, 720)
+render_target_update_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SecretMap" parent="SubViewport/MarginContainer" node_paths=PackedStringArray("sub_viewport") instance=ExtResource("5_0t537")]
+unique_name_in_owner = true
+layout_mode = 2
+sub_viewport = NodePath("../..")

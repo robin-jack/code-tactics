@@ -17,7 +17,7 @@ var secret_map: Dictionary
 var current: Control
 
 func _ready():
-	var a = await FirebaseControl.login()
+	await FirebaseControl.login()
 	current = %MarginContainer/MainMenu
 	current.transitioned.connect(transition_to)
 

@@ -37,7 +37,7 @@ func _on_custom_button_button_up():
 	custom_button.disabled = true
 	advanced_button.disabled = true
 	loading.show()
-	var url := await FirebaseControl.login()
+	var url := await FirebaseControl.create_qr_async()
 	loading.hide()
 	advanced_button.disabled = false
 	custom_button.disabled = false

@@ -6,6 +6,7 @@ const BLUE_BG = preload("res://assets/sprites/blue_bg.png")
 signal transitioned(scn)
 
 @onready var background = $Background
+@onready var secret_map = %SecretMap
 
 func _ready():
 	Global.state_changed.connect(_change_background)
