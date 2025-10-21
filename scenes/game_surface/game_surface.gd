@@ -8,17 +8,17 @@ signal transitioned(scn)
 @onready var background = $Background
 @onready var secret_map = %SecretMap
 
+const TBG := {
+	Global.TEAM.RED: RED_BG,
+	Global.TEAM.BLUE: BLUE_BG
+}
+
 func _ready():
+	background.texture = TBG[Global.current_team]
 	Global.state_changed.connect(_change_background)
 	
 func _change_background(state):
-	var bg = BLACK_BG
 	if state == Global.STATE.NEXT:
-		match Global.current_team:
-			Global.TEAM.RED:
-				bg = RED_BG
-			Global.TEAM.BLUE:
-				bg = BLUE_BG
+		background.texture = TBG[Global.current_team]
 	elif state == Global.STATE.OVER:
-		bg = BLACK_BG
-	background.texture = bg
+		background.texture = BLACK_BG
