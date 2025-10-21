@@ -9,11 +9,11 @@ var set_time: int = 0
 
 func _ready():
 	set_time = Settings.game.tp_round
-	Global.state_changed.connect(state_changed)
-	Global.card_pressed.connect(check_type)
 	timer.wait_time = set_time
 	_update(set_time)
 	label.pivot_offset = label.size / 2.0
+	Global.state_changed.connect(state_changed)
+	Global.card_pressed.connect(check_type)
 
 func state_changed(state):
 	match state:
@@ -36,7 +36,7 @@ func check_type(type):
 		timer.timeout.emit()
 
 func _on_timer_timeout():
-	print_debug("Timer Timeout called!")
+	print_debug("Timer timeout called!")
 	u_timer.stop()
 	timer.stop()
 	#TODO timer animation

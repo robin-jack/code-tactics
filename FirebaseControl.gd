@@ -27,7 +27,6 @@ func _on_login_succeeded(_auth) -> void:
 	print_debug("Login succeeded!")
 	login_done.emit(true)
 	auth = _auth
-	print_debug(auth)
 
 func _on_login_failed(error_code, message) -> void:
 	print_debug("Firebase login failed: %s - %s" % [str(error_code), str(message)])

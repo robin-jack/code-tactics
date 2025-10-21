@@ -15,10 +15,3 @@ func advancify(adv: bool):
 		child.visible = adv
 	
 	time_round.visible = !adv
-	
-func _exit_tree():
-	print_debug("Saving Settings")
-	#Settings.game.tp_round = time_round.time
-	#Settings.game.tp_captains = time_captains.time
-	#Settings.game.tp_soldiers = time_soldiers.time
-	

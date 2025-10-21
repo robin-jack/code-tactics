@@ -26,8 +26,7 @@ func create_secret_image():
 	await RenderingServer.frame_post_draw
 	await get_tree().process_frame
 	var img = sub_viewport.get_texture().get_image().save_png_to_buffer()
-	var info = await Firebase.Storage.ref("Firebasetester/upload/test.png").put_data(img)
-	print_debug(info)
+	var _info = await Firebase.Storage.ref("Firebasetester/upload/test.png").put_data(img)
 	var url = await Firebase.Storage.ref("Firebasetester/upload/test.png").get_download_url()
 	print_debug(url)
 	return url

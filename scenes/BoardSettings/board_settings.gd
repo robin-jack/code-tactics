@@ -31,6 +31,8 @@ func _set_board_size(col: int, num_cards: int):
 
 func _on_advanced_button_button_up():
 	advanced = !advanced
+	_on_reset_board_button_up()
+	#TODO ask if sure to reset board
 	show_already_advanced()
 
 func _on_custom_button_button_up():
