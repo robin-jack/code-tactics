@@ -43,15 +43,24 @@ func _create_secret_map(recode=true):
 func replace_word(old_word: String):
 	var unique_words = _words_instance.WORDS.filter(func(item): return item not in _selected_words)
 	var new_word = unique_words.pick_random()
-	for i in range(_selected_words.size()):
-		if _selected_words[i] == old_word:
-			_selected_words[i] = new_word
+	swap_word_mantain_order(old_word, new_word)
 	return new_word
 
 func editted_word(old_word: String, new_word: String) -> void:
+	swap_word_mantain_order(old_word, new_word)
+
+func swap_word_mantain_order(old_word: String, new_word: String) -> void:
 	for i in range(_selected_words.size()):
 		if _selected_words[i] == old_word:
 			_selected_words[i] = new_word
+	#-----------------
+	var temporal := {}
+	for key in _secret_map.keys():
+		if key == old_word:
+			temporal[new_word] = _secret_map[old_word]
+		else:
+			temporal[key] = _secret_map[key]
+	_secret_map = temporal
 
 func _new_words():
 	# select only words not contained in previous selected words (if any)
