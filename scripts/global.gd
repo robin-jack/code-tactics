@@ -24,9 +24,11 @@ var current_state: STATE = STATE.NEXT
 
 func get_map_manager() -> MapManager:
 	if _map_manager and is_instance_valid(_map_manager):
+		print("Returned existing map manager --> to qr")
 		return _map_manager
 		
 	_map_manager = MapManager.new()
+	print("Returned NEW map manager -->  create map")
 	return _map_manager
 
 func emit_card(type):

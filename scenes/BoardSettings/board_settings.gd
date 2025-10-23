@@ -20,6 +20,11 @@ var duration: float = 1
 var advanced: bool = false
 
 func _ready():
+	print("### BOARD SETTINGS ###")
+	var mapper = Global.get_map_manager()
+	var secret_map = await mapper.get_map(true)
+	fakeboard.mapper = mapper
+	fakeboard.secret_map = secret_map
 	number_of_cards.selected.connect(_set_board_size)
 	fakeboard.update_fakeboard()
 
@@ -31,7 +36,8 @@ func _set_board_size(col: int, num_cards: int):
 
 func _on_advanced_button_button_up():
 	advanced = !advanced
-	_on_reset_board_button_up()
+	if !advanced:
+		_on_reset_board_button_up()
 	#TODO ask if sure to reset board
 	show_already_advanced()
 
@@ -46,21 +52,24 @@ func _on_custom_button_button_up():
 	if url != "":
 		popup_qr.qr.set_data(url)
 		popup_qr.popup.popup_centered()
+		Settings.game.custom_words = true
 	else:
 		print_debug("ERROR NO URL :()")
 
 func _on_load_board_button_up():
 	number_of_cards.buttons_disabled(true)
+	custom_button.disabled = true
 	load_board.disabled = true
+	await fakeboard.load_board()
 	reset_board.disabled = false
-	fakeboard.load_board()
 
 func _on_reset_board_button_up():
 	number_of_cards.buttons_disabled(false)
+	custom_button.disabled = false
 	load_board.disabled = false
 	reset_board.disabled = true
 	fakeboard.update_fakeboard()
-
+	
 func _on_back_button_button_up():
 	transitioned.emit(back)
 

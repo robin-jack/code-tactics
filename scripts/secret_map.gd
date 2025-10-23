@@ -2,11 +2,9 @@ extends GridContainer
 
 @export var sub_viewport: Node
 
-func create_secret_grid():
+func create_secret_grid(secret_map):
 	print_debug("Adding cards to SECRET GRID")
 	columns = Settings.game.col
-	var mapper = Global.get_map_manager()
-	var secret_map = await mapper.get_map()
 	_clear()
 	for i in Settings.game.num_cards:
 		var sq := ColorRect.new()
@@ -28,5 +26,5 @@ func create_secret_image():
 	var img = sub_viewport.get_texture().get_image().save_png_to_buffer()
 	var _info = await Firebase.Storage.ref("Firebasetester/upload/test.png").put_data(img)
 	var url = await Firebase.Storage.ref("Firebasetester/upload/test.png").get_download_url()
-	print_debug(url)
+	print("url: ", url)
 	return url

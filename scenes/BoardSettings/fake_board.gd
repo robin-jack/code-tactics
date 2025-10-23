@@ -33,8 +33,7 @@ func update_fakeboard():
 
 func load_board():
 	_clear()
-	mapper = Global.get_map_manager()
-	secret_map = await mapper.get_map()
+	secret_map = await mapper.get_map(true)
 	for i in range(Settings.game.num_cards):
 		var card_fb = CARD.instantiate()
 		card_fb.word = secret_map.keys()[i]
@@ -76,5 +75,6 @@ func show_card_menu_for(card: Control):
 
 func _clear():
 	for child in get_tree().get_nodes_in_group("card"):
-		remove_child(child)
-		child.queue_free()
+		if child.get_parent() == self:
+			remove_child(child)
+			child.queue_free()

@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm5vn3wyk30cu"]
+[gd_scene load_steps=6 format=3 uid="uid://cm5vn3wyk30cu"]
 
 [ext_resource type="Script" uid="uid://dbqge4btl2hp1" path="res://scenes/playing_controls.gd" id="1_cfdx6"]
 [ext_resource type="PackedScene" uid="uid://c4kle165khycj" path="res://scenes/prefabs/TeamScore.tscn" id="1_rba0a"]
 [ext_resource type="PackedScene" uid="uid://dpcjk8rmlgr0y" path="res://scenes/prefabs/TimeBox.tscn" id="2_gu71c"]
 [ext_resource type="Texture2D" uid="uid://1ygku0xcafk6" path="res://assets/sprites/teamscore_red.png" id="3_lc875"]
 [ext_resource type="Texture2D" uid="uid://dc8ytiqvhsq5y" path="res://assets/sprites/teamscore_blue.png" id="5_gomo4"]
-[ext_resource type="PackedScene" uid="uid://ijj62ln56aam" path="res://scenes/SecretMap.tscn" id="6_anwh6"]
-[ext_resource type="PackedScene" uid="uid://djvyscvwt1u3u" path="res://scenes/prefabs/PopupQR.tscn" id="7_u0ign"]
 
 [node name="PlayingControls" type="Control"]
 custom_minimum_size = Vector2(136, 0)
@@ -63,48 +61,3 @@ layout_mode = 2
 size_flags_vertical = 1
 texture = ExtResource("5_gomo4")
 team = 1
-
-[node name="BackButton" type="Button" parent="."]
-custom_minimum_size = Vector2(40, 30)
-layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_font_sizes/font_size = 20
-text = "<<<"
-
-[node name="ShowQR" type="Button" parent="."]
-custom_minimum_size = Vector2(40, 30)
-layout_mode = 1
-offset_left = 60.0
-offset_right = 100.0
-offset_bottom = 30.0
-theme_override_font_sizes/font_size = 20
-disabled = true
-text = "QR"
-
-[node name="PopupQR" parent="." instance=ExtResource("7_u0ign")]
-layout_mode = 1
-
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(720, 720)
-render_target_update_mode = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="SecretMap" parent="SubViewport/MarginContainer" node_paths=PackedStringArray("sub_viewport") instance=ExtResource("6_anwh6")]
-layout_mode = 2
-sub_viewport = NodePath("../..")
-
-[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]
-[connection signal="button_up" from="ShowQR" to="." method="_on_show_qr_button_up"]

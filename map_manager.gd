@@ -17,13 +17,17 @@ func _init():
 	_words_instance = WORDS_FILE.new()
 	_num_cards = Settings.game.num_cards
 
-func get_map() -> Dictionary:
-	if _secret_map == null or _secret_map.is_empty():
+## hace cosas
+func get_map(reset: bool = false) -> Dictionary:
+	if _secret_map == null or _secret_map.is_empty() or reset:
+		print("returning NEW secret map")
 		return await _create_secret_map()
+	print("returning existing secret map")
 	return _secret_map
 
 func _create_secret_map(recode=true):
 	_secret_map = {}
+	_num_cards = Settings.game.num_cards
 	await _new_words()
 	if recode:
 		_new_code()
@@ -33,6 +37,7 @@ func _create_secret_map(recode=true):
 		
 	Global.max_points = max_points
 	
+	print(_secret_map)
 	return _secret_map
 
 func replace_word(old_word: String):
@@ -89,23 +94,23 @@ func _new_code():
 	_selected_code = _fisher_yates_shuffle(_selected_code)
 
 func _get_custom_words():
-	var rooms = "pass"
+	var rooms = FirebaseControl.rooms
 	var document = await rooms.get_doc(FirebaseControl.doc_name)
 	
 	if(document == null):
-		print_debug("Failed to get Document")
-		return
+		print_debug("Failed to get Document (could not access it)")
+		return []
 	
 	# Extract the words
 	var custom_words = await document.get_value("words")
-	return custom_words
+	return custom_words if custom_words is Array else []
 
 func _pick_random_words(count: int, words: Array, custom_words: Array) -> Array:
 	# process custom words
 	if not custom_words.is_empty():
 		# replace default words with custom words
 		custom_words.shuffle()
-		if Global.mix:
+		if Settings.game.mix_words:
 			if custom_words.size() >= count/2:
 				print_debug("Mixing words with half of custom")
 				custom_words = custom_words.slice(0, count/2)
@@ -120,6 +125,8 @@ func _pick_random_words(count: int, words: Array, custom_words: Array) -> Array:
 			else:
 				print_debug("Only using custom, have to fill gap with words")
 				count -= custom_words.size()
+	else:
+		print_debug("Did not use custom words as it was empty")
 
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()

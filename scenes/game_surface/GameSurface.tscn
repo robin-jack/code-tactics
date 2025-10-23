@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://br75mlsdxgqay" path="res://scenes/Board.tscn" id="1_emaio"]
 [ext_resource type="PackedScene" uid="uid://cm5vn3wyk30cu" path="res://scenes/PlayingControls.tscn" id="2_ahv25"]
 [ext_resource type="PackedScene" uid="uid://djvyscvwt1u3u" path="res://scenes/prefabs/PopupQR.tscn" id="2_d6o15"]
-[ext_resource type="PackedScene" uid="uid://ijj62ln56aam" path="res://scenes/SecretMap.tscn" id="5_0t537"]
+[ext_resource type="PackedScene" uid="uid://ijj62ln56aam" path="res://scenes/SecretGrid.tscn" id="5_d6o15"]
 
 [node name="GameSurface" type="Control"]
 layout_mode = 3
@@ -47,6 +47,24 @@ size_flags_vertical = 1
 layout_mode = 2
 size_flags_horizontal = 1
 
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "<<<"
+
+[node name="ShowQR" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 1
+offset_left = 60.0
+offset_right = 110.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "QR"
+
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(720, 720)
 render_target_update_mode = 4
@@ -64,7 +82,10 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="SecretMap" parent="SubViewport/MarginContainer" node_paths=PackedStringArray("sub_viewport") instance=ExtResource("5_0t537")]
+[node name="SecretGrid" parent="SubViewport/MarginContainer" node_paths=PackedStringArray("sub_viewport") instance=ExtResource("5_d6o15")]
 unique_name_in_owner = true
 layout_mode = 2
 sub_viewport = NodePath("../..")
+
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]
+[connection signal="button_up" from="ShowQR" to="." method="_on_show_qr_button_up"]
