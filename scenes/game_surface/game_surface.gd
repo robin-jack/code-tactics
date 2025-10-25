@@ -23,14 +23,12 @@ func _ready():
 	print("### GAME SURFACE ###")
 	background.texture = TBG[Global.current_team]
 	Global.state_changed.connect(_change_background)
-	setup()
+	_setup()
 
-func setup():
-	var mapper = Global.get_map_manager()
-	var secret_map = await mapper.get_map()
-	board.populate(secret_map)
-	secret_grid.create_secret_grid(secret_map)
-	var url = await secret_grid.create_secret_image()
+func _setup():
+	await MapManager.new_secret_map()
+	board.populate()
+	var url = await secret_grid.create_secret_grid()
 	popup_qr.qr.set_data(url)
 	show_qr.disabled = false
 

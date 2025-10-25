@@ -1,7 +1,5 @@
 extends Node
 
-class_name MapManager
-
 const WORDS_FILE = preload("res://words.gd")
 const CHAMPIONS_FILE = preload("res://champions.gd")
 
@@ -9,58 +7,63 @@ var _num_cards: int = 0
 var _words_instance: Node = null
 var _selected_words: Array = []
 var _selected_code: Array = []
-var _secret_map: Dictionary = {}
 
-var max_points: int = 0
+## Dictionary of structure: [Words: Types]
+var secret_map: Dictionary = {}
 
 func _init():
 	_words_instance = WORDS_FILE.new()
 	_num_cards = Settings.game.num_cards
 
-## hace cosas
-func get_map(reset: bool = false) -> Dictionary:
-	if _secret_map == null or _secret_map.is_empty() or reset:
-		print("returning NEW secret map")
-		return await _create_secret_map()
-	print("returning existing secret map")
-	return _secret_map
+## Creates a new Secret Map. Needs to be AWAITED
+func new_secret_map(force: bool = false):
+	if secret_map.is_empty() || force:
+		print_debug("CREATING NEW MAP")
+		await _create_secret_map()
 
+## Changes which words file to load
+func change_words_file_to_(path: StringName):
+	_words_instance = load(path).new()
+	
+## Returns a new Secret Map
 func _create_secret_map(recode=true):
-	_secret_map = {}
+	secret_map = {}
 	_num_cards = Settings.game.num_cards
 	await _new_words()
 	if recode:
 		_new_code()
-
+	# here is where the secret map is SET
 	for i in range(_selected_words.size()):
-		_secret_map[_selected_words[i]] = _selected_code[i]
+		secret_map[_selected_words[i]] = _selected_code[i]
 		
-	Global.max_points = max_points
-	
-	print(_secret_map)
-	return _secret_map
-
 func replace_word(old_word: String):
 	var unique_words = _words_instance.WORDS.filter(func(item): return item not in _selected_words)
 	var new_word = unique_words.pick_random()
 	swap_word_mantain_order(old_word, new_word)
 	return new_word
 
-func editted_word(old_word: String, new_word: String) -> void:
+func edit_word(old_word: String, new_word: String) -> void:
 	swap_word_mantain_order(old_word, new_word)
 
 func swap_word_mantain_order(old_word: String, new_word: String) -> void:
 	for i in range(_selected_words.size()):
 		if _selected_words[i] == old_word:
+			print("snatched old word")
 			_selected_words[i] = new_word
+			print("set it to: ", _selected_words[i])
+	# map being set here
+	print("making change in secret map")
+	secret_map = {}
+	for i in range(_selected_words.size()):
+		secret_map[_selected_words[i]] = _selected_code[i]
 	#-----------------
-	var temporal := {}
-	for key in _secret_map.keys():
-		if key == old_word:
-			temporal[new_word] = _secret_map[old_word]
-		else:
-			temporal[key] = _secret_map[key]
-	_secret_map = temporal
+	#var temporal := {}
+	#for key in secret_map.keys():
+		#if key == old_word:
+			#temporal[new_word] = secret_map[old_word]
+		#else:
+			#temporal[key] = secret_map[key]
+	#secret_map = temporal
 
 func _new_words():
 	# select only words not contained in previous selected words (if any)
@@ -99,7 +102,7 @@ func _new_code():
 		
 	# Shuffle the array to randomize the order
 	Global.current_team = starting_team
-	max_points = one_third + 1
+	Global.max_points = one_third + 1
 	_selected_code = _fisher_yates_shuffle(_selected_code)
 
 func _get_custom_words():

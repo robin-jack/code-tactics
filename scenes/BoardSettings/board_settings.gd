@@ -21,10 +21,6 @@ var advanced: bool = false
 
 func _ready():
 	print("### BOARD SETTINGS ###")
-	var mapper = Global.get_map_manager()
-	var secret_map = await mapper.get_map(true)
-	fakeboard.mapper = mapper
-	fakeboard.secret_map = secret_map
 	number_of_cards.selected.connect(_set_board_size)
 	fakeboard.update_fakeboard()
 
@@ -39,7 +35,7 @@ func _on_advanced_button_button_up():
 	if !advanced:
 		_on_reset_board_button_up()
 	#TODO ask if sure to reset board
-	show_already_advanced()
+	_show_already_advanced()
 
 func _on_custom_button_button_up():
 	custom_button.disabled = true
@@ -76,7 +72,7 @@ func _on_back_button_button_up():
 func _on_play_button_button_up():
 	transitioned.emit(next)
 
-func show_already_advanced():
+func _show_already_advanced():
 	advanced_button.disabled = true
 	var tw = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tw.stop()
@@ -85,7 +81,7 @@ func show_already_advanced():
 	for target in targets:
 		tw.tween_property(target, "modulate", color, duration*0.5)
 	if advanced:
-		await tween_to_target().finished
+		await _tween_to_target().finished
 		get_tree().call_group("already_adv", "show")
 		tw.play()
 		advanced_button.text = "FEWER SETTINGS"
@@ -93,11 +89,11 @@ func show_already_advanced():
 		tw.play()
 		await tw.finished
 		get_tree().call_group("already_adv", "hide")
-		await tween_to_target().finished
+		await _tween_to_target().finished
 		advanced_button.text = "ADVANCED SETTINGS"
 	advanced_button.disabled = false
 
-func tween_to_target():
+func _tween_to_target():
 	var targets = get_tree().get_nodes_in_group("adv_node")
 	var tw = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 

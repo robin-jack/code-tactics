@@ -31,5 +31,5 @@ func update_points(type: Global.TYPE):
 
 func check_win():
 	if points == max_points:
-		Global.set_state(Global.STATE.OVER)
+		Global.current_state = Global.STATE.OVER
 		print_debug(TNAME[team], " TEAM WON !!!")

@@ -12,17 +12,12 @@ const MAP_MANAGER = preload("res://map_manager.gd")
 @onready var background = $Background
 @onready var mc = %MarginContainer
 
-var mapper: MapManager
-var secret_map: Dictionary
 var current: Control
 
 func _ready():
 	await FirebaseControl.login()
 	current = %MarginContainer/MainMenu
 	current.transitioned.connect(transition_to)
-
-func _new_board():
-	secret_map = await mapper.create_secret_map()
 
 func transition_to(next_scene: String):
 	current.queue_free()

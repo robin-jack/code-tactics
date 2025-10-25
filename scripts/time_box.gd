@@ -31,7 +31,7 @@ func check_type(type):
 	if type == Global.TYPE.BLACK:
 		# mistake made - stop timer
 		print_debug("!!! GAME OVER !!!")
-		Global.set_state(Global.STATE.OVER)
+		Global.current_state = Global.STATE.OVER
 	elif type != Global.current_team:
 		timer.timeout.emit()
 
@@ -41,7 +41,7 @@ func _on_timer_timeout():
 	timer.stop()
 	#TODO timer animation
 	_update(set_time)
-	Global.set_state(Global.STATE.NEXT)
+	Global.current_state = Global.STATE.NEXT
 	await change_label_state(false)
 	
 func _on_update_timer_timeout():
@@ -51,7 +51,7 @@ func _on_button_up():
 	var playing: bool = timer.is_stopped() || timer.paused
 	await change_label_state(playing)
 	if timer.is_stopped():
-		Global.set_state(Global.STATE.PLAY)
+		Global.current_state = Global.STATE.PLAY
 		u_timer.start()
 		timer.start()
 	else:

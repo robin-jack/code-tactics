@@ -3,8 +3,6 @@ extends Node
 signal card_pressed(type: TYPE)
 signal state_changed(state: STATE)
 
-var _map_manager: MapManager = null
-
 enum TEAM { RED, BLUE }
 enum TYPE { RED, BLUE, BROWN, BLACK}
 enum MENU {SETTINGS, SETUP, PLAYING}
@@ -20,26 +18,14 @@ const COLOR := {
 var max_points: int = 0
 var current_team: TEAM
 var current_menu: MENU = MENU.SETTINGS
-var current_state: STATE = STATE.NEXT
-
-func get_map_manager() -> MapManager:
-	if _map_manager and is_instance_valid(_map_manager):
-		print("Returned existing map manager --> to qr")
-		return _map_manager
-		
-	_map_manager = MapManager.new()
-	print("Returned NEW map manager -->  create map")
-	return _map_manager
+var current_state: STATE = STATE.NEXT : set = _set_state
 
 func emit_card(type):
 	card_pressed.emit(type)
 	var color: Color = COLOR[type]
 	return color
 	
-func set_menu(menu: MENU):
-	current_menu = menu
-	
-func set_state(state: STATE):
+func _set_state(state: STATE):
 	current_state = state
 	if state == STATE.NEXT:
 		current_team = ((current_team + 1) % 2) as TEAM
