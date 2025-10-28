@@ -3,6 +3,8 @@ extends Node
 const WORDS_FILE = preload("res://words.gd")
 const CHAMPIONS_FILE = preload("res://champions.gd")
 
+signal map_created
+
 var _num_cards: int = 0
 var _words_instance: Node = null
 var _selected_words: Array = []
@@ -20,6 +22,7 @@ func new_secret_map(force: bool = false):
 	if secret_map.is_empty() || force:
 		print_debug("CREATING NEW MAP")
 		await _create_secret_map()
+	map_created.emit()
 
 ## Changes which words file to load
 func change_words_file_to_(path: StringName):
@@ -56,14 +59,6 @@ func swap_word_mantain_order(old_word: String, new_word: String) -> void:
 	secret_map = {}
 	for i in range(_selected_words.size()):
 		secret_map[_selected_words[i]] = _selected_code[i]
-	#-----------------
-	#var temporal := {}
-	#for key in secret_map.keys():
-		#if key == old_word:
-			#temporal[new_word] = secret_map[old_word]
-		#else:
-			#temporal[key] = secret_map[key]
-	#secret_map = temporal
 
 func _new_words():
 	# select only words not contained in previous selected words (if any)
@@ -115,6 +110,8 @@ func _get_custom_words():
 	
 	# Extract the words
 	var custom_words = await document.get_value("words")
+	print(custom_words)
+	print(typeof(custom_words))
 	return custom_words if custom_words is Array else []
 
 func _pick_random_words(count: int, words: Array, custom_words: Array) -> Array:

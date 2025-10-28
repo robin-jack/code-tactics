@@ -13,6 +13,7 @@ signal transitioned(scn)
 @onready var secret_grid = %SecretGrid
 @onready var popup_qr = $PopupQR
 @onready var show_qr = $ShowQR
+@onready var blocker = $Blocker
 
 const TBG := {
 	Global.TEAM.RED: RED_BG,
@@ -21,16 +22,21 @@ const TBG := {
 
 func _ready():
 	print("### GAME SURFACE ###")
-	background.texture = TBG[Global.current_team]
-	Global.state_changed.connect(_change_background)
-	_setup()
-
-func _setup():
 	await MapManager.new_secret_map()
-	board.populate()
 	var url = await secret_grid.create_secret_grid()
 	popup_qr.qr.set_data(url)
 	show_qr.disabled = false
+	background.texture = TBG[Global.current_team]
+	Global.state_changed.connect(_change_background)
+	Global.state_changed.connect(_block_input)
+	
+	print(Settings.game)
+
+func _block_input(state):
+	if Global.current_state == Global.STATE.PLAY:
+		blocker.visible = false
+	else:
+		blocker.visible = true
 
 func _change_background(state):
 	if state == Global.STATE.NEXT:

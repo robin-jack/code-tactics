@@ -2,10 +2,11 @@ extends GridContainer
 
 const CARD = preload("res://scenes/prefabs/Card.tscn")
 
-func populate():
+func _ready():
+	MapManager.map_created.connect(_populate)
+
+func _populate():
 	var sm = MapManager.secret_map
-	print(sm.keys()[0])
-	print(sm.keys()[1])
 	print_debug("Adding cards to BOARD")
 	_clear()
 	columns = Settings.game.col

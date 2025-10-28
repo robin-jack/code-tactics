@@ -6,12 +6,13 @@
 script = ExtResource("1_dkb6r")
 num_cards = 25
 col = 5
-issmall = false
-custom_words = false
+use_small = false
+custom_words = true
 mix_words = false
 one_timer = true
 tp_round = 140.0
 tp_captains = 120.0
 tp_soldiers = 60.0
 self_start_timer = false
+can_pause = true
 metadata/_custom_type_script = "uid://dfbsx4q2lsq3k"

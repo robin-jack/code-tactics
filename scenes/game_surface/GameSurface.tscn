@@ -47,6 +47,14 @@ size_flags_vertical = 1
 layout_mode = 2
 size_flags_horizontal = 1
 
+[node name="Blocker" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 41.0
+offset_right = 1774.0
+offset_bottom = 1038.0
+color = Color(1, 1, 1, 0)
+
 [node name="BackButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 40)
 layout_mode = 1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ol8eu7akdfix"]
+[gd_scene load_steps=14 format=3 uid="uid://ol8eu7akdfix"]
 
 [ext_resource type="Script" uid="uid://unt7dstny8mq" path="res://scripts/CardSprite.gd" id="1_5aue1"]
 [ext_resource type="Texture2D" uid="uid://b1q4o0quklwo0" path="res://assets/sprites/carta/upyparta0b.png" id="2_wdc4f"]
 [ext_resource type="Texture2D" uid="uid://jd6qig34wc01" path="res://assets/sprites/carta/upyparta1.png" id="3_g05px"]
+[ext_resource type="FontFile" uid="uid://bx6d6qlbauwax" path="res://assets/fonts/KGSimplytheBest.ttf" id="3_wdc4f"]
 [ext_resource type="Texture2D" uid="uid://c7ylitsx28pfc" path="res://assets/sprites/carta/upyparta2.png" id="4_mvax2"]
 [ext_resource type="Texture2D" uid="uid://cxl41sh5p02ks" path="res://assets/sprites/carta/upyparta3.png" id="5_3xb2c"]
 [ext_resource type="Texture2D" uid="uid://c02cptwiksh2a" path="res://assets/sprites/carta/upyparta4.png" id="6_p2s60"]
@@ -299,6 +300,7 @@ offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(100, 66.5)
+theme_override_fonts/font = ExtResource("3_wdc4f")
 theme_override_font_sizes/font_size = 50
 text = "Hola"
 horizontal_alignment = 1
@@ -316,6 +318,7 @@ grow_vertical = 2
 rotation = 3.14159
 pivot_offset = Vector2(100, 66.5)
 theme_override_colors/font_color = Color(0.273438, 0.273438, 0.273438, 1)
+theme_override_fonts/font = ExtResource("3_wdc4f")
 theme_override_font_sizes/font_size = 50
 text = "Hola"
 horizontal_alignment = 1

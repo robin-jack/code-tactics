@@ -1,4 +1,4 @@
-extends Control
+extends TextureButton
 
 @onready var label = $Label
 @onready var timer = $Timer
@@ -37,30 +37,33 @@ func check_type(type):
 
 func _on_timer_timeout():
 	print_debug("Timer timeout called!")
+	Global.current_state = Global.STATE.NEXT
 	u_timer.stop()
 	timer.stop()
 	#TODO timer animation
+	disabled = true
 	_update(set_time)
-	Global.current_state = Global.STATE.NEXT
 	await change_label_state(false)
+	disabled = false
 	
 func _on_update_timer_timeout():
 	_update(timer.time_left)
 
 func _on_button_up():
 	var playing: bool = timer.is_stopped() || timer.paused
-	await change_label_state(playing)
 	if timer.is_stopped():
+		await change_label_state(playing)
 		Global.current_state = Global.STATE.PLAY
 		u_timer.start()
 		timer.start()
-	else:
-		if timer.paused:
-			timer.paused = false
-			u_timer.paused = false
-		else:
-			timer.paused = true
-			u_timer.paused = true
+	elif Settings.game.can_pause_timer:
+			await change_label_state(playing)
+			if timer.paused:
+				timer.paused = false
+				u_timer.paused = false
+			else:
+				timer.paused = true
+				u_timer.paused = true
 
 func change_label_state(playing):
 	anim.frame = playing

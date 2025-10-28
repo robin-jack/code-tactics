@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bva4a0bp3s1qu"]
+[gd_scene load_steps=3 format=3 uid="uid://bva4a0bp3s1qu"]
 
 [ext_resource type="Script" uid="uid://3x4pi7x1op2e" path="res://scenes/BoardSettings/time_settings.gd" id="1_c7xb7"]
 [ext_resource type="PackedScene" uid="uid://b6kdxhfhnawh8" path="res://scenes/BoardSettings/TimeSelection.tscn" id="2_x2gd1"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_xn3po"]
-color = Color(0.513726, 0.513726, 0.513726, 1)
-thickness = 3
 
 [node name="TimeSettings" type="PanelContainer"]
 anchors_preset = 8
@@ -38,20 +34,35 @@ vertical_alignment = 2
 layout_mode = 2
 time_per = &"tp_round"
 
-[node name="TimeCaptains" parent="VBoxContainer" groups=["advanced"] instance=ExtResource("2_x2gd1")]
+[node name="TimeCaptains" parent="VBoxContainer" instance=ExtResource("2_x2gd1")]
 visible = false
 layout_mode = 2
 time_per = &"tp_captains"
 title_text = "Captains"
 
-[node name="TimeSoldiers" parent="VBoxContainer" groups=["advanced"] instance=ExtResource("2_x2gd1")]
+[node name="TimeSoldiers" parent="VBoxContainer" instance=ExtResource("2_x2gd1")]
 visible = false
 layout_mode = 2
 time_per = &"tp_soldiers"
 title_text = "Soldiers"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="SingleCheckbox" type="CheckBox" parent="VBoxContainer" groups=["advanced"]]
 visible = false
 layout_mode = 2
-theme_override_constants/separation = 0
-theme_override_styles/separator = SubResource("StyleBoxLine_xn3po")
+theme_override_font_sizes/font_size = 30
+button_pressed = true
+text = "Single timer"
+
+[node name="AutoCheckbox" type="CheckBox" parent="VBoxContainer" groups=["advanced"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Auto start timer"
+
+[node name="CanPauseCheckbox" type="CheckBox" parent="VBoxContainer" groups=["advanced"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Timer can be paused"
+
+[connection signal="toggled" from="VBoxContainer/SingleCheckbox" to="." method="_on_single_checkbox_toggled"]
